@@ -1,2 +1,5 @@
 *.code-workspace
 *.vscode
+.logs
+.evfevent
+.env
