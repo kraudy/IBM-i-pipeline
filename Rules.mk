@@ -1,1 +1,1 @@
-SUBDIRS = src\qrpglesrc
+SUBDIRS = qrpglesrc
