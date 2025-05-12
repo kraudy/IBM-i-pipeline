@@ -1,0 +1,12 @@
+{
+  "description": "Demo for QUSER of Payroll",
+  "curlib": "&CURLIB",
+  "buildCommand": "makei build",
+  "compileCommand": "makei compile -f {filename}",
+  "includePath": [
+    "QRPGLESRC/includes"
+  ],
+  "preUsrlibl": [
+    "&data_library"
+  ]
+}
