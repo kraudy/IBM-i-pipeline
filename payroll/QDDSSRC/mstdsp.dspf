@@ -21,23 +21,29 @@
      A*%%TS  SD  19920629  165055  SMYTH       REL-V2R2M0  5738-PW1
      A                                      BLINK
      A  60                                  ALARM
-     A                                  2  5'PRG01'
-     A                                  2 30'Time Reporting System'
+     A                                  2  5'SYS01'
+     A                                  2 30'General Control System'
      A                                  2 70DATE
      A                                      EDTCDE(Y)
      A                                  3 30'Maintenance Selection'
      A                                  3 70TIME
-     A                                  6 14'Enter an X beside the application -
-     A                                      you want to maintain'
-     A            EMPAPL         1A  B  9 25
-     A                                  9 28'Employee Master Maintenance'
-     A            PRJAPL         1A  B 10 25
-     A                                 10 28'Project Master Maintenance'
-     A            RSNAPL         1A  B 11 25
-     A                                 11 28'Reason Code Master Maintenance'
+     A                                  6 14'Select option'
+     A            EMPAPL         1A  B  9 15
+     A                                  9 18'User Task'
+     A            PRJAPL         1A  B 10 15
+     A                                 10 18'General System Task'
+     A            RSNAPL         1A  B 11 15
+     A                                 11 18'Programming'
+     A            EMPAP2         1A  B  9 50
+     A                                  9 53'Office Task'
+     A            EMPAP3         1A  B 10 50
+     A                                 10 53'Files'
+     A            EMPAP4         1A  B 11 50
+     A                                 11 53'Communication'
      A            EMESS         50A  O 21 16
      A  60                                  DSPATR(HI)
-     A                                 23  7'F3-End of Job'
+     A                                 23 14'Exit Prompt Retrieve Cancel Inf-
+     A                                      ormation Assistant Exists'
      A*  89/04/10  16:28:41    SING        REL-R01M02  5728-PW1
      A*  THE EMPSEL FORMAT ALLOWS SELECTION OF THE EMPLOYEE TO BE
      A*  MAINTAINED AND THE TYPE OF MAINTENANCE TO BE PERFORMED
