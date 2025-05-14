@@ -88,6 +88,35 @@ git push   # Send it to your github repo
 
 ## Create simple project
 
+Use the ibm i project explorer to initialize the ```./simple``` project like we did with the empty one.
+
+Lets create a dir that represents a source phisical file (IBM I Intro repo here) and cd into it.
+
+```bash
+cd ./simple
+mkdir ./qrpglesrc && cd ./qrpglesrc
+```
+
+### Create first source
+
+Add our [RPG](https://en.wikipedia.org/wiki/IBM_RPG) (RPG intro repo here) hello world source. Note the naming convention.
+
+```bash
+touch hello.pgm.rpgle
+```
+
+Now, the code
+
+```rpg
+**free
+Ctl-opt DftActGrp(*No);
+Dsply 'Hello world!, edited';
+*inlr = *on;
+return;
+```
+
+That is our first source file. Nice!
+
 ### Commit changes
 
 ### Compile
