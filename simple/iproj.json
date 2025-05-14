@@ -1,3 +1,10 @@
 {
-  "description": "Simple project"
+  "description": "Simple project",
+  "preUsrlibl": [
+    "ROBKRAUDY2"
+  ],
+  "curlib": "&CURLIB",
+  "buildCommand": "makei build",
+  "buildObjectCommand": "makei b -t {object}",
+  "compileCommand": "makei compile -f {filename}"
 }

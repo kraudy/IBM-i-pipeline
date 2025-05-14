@@ -117,11 +117,87 @@ return;
 
 That is our first source file. Nice!
 
-### Commit changes
-
 ### Compile
 
+Now, how to compile it?.
+
+First, connect to PUB400 with the code for ibm i plugin.
+On the ibm i project explorer go to the simple project and set the deploy location, sould look something like this
+
+```bash
+/home/Your_User/builds/simple
+```
+
+Select the deploy method, compare should be fine.
+
+Also, this automatically generates a .env for your project that looks similar to this, which is basically a library list for the job on the ibm i (don't worry about these definitions if you don't know them)
+
+```bash
+LIBL=QGPL QTEMP GAMES400
+```
+
+Now set the data_library variable, this can be any of the two libraries that PUB400 gives you. It will be added to the .env file.
+
+```bash
+data_library=Your_Library
+```
+
+Make sure Your_Library is in the library list of the ibm i project and set it to current library.
+
+By this point we are ready to compile the hello world.
+
+Go to the simple ibm i project and hit run, then select Run build.
+
+It will ask you to set the build command, the default is ```makei build``` that should be fine since we are using [BOB](https://github.com/IBM/ibmi-bob). It will deploy the source and look for a Rules.mk file in the project root, which we don't have, lets make it.
+
+The Rules.mk file tells bob the dir struct inside your project. Go to your project root and creat it
+
+```bash
+cd ..
+touch Rules.mk
+```
+
+Now add the dirs of your project with the source file like this, we only have one
+
+```bash
+SUBDIRS = qrpglesrc
+```
+
+Hit run again in the ibm i simple project. But... it still didn't build our program, we need one more thing.
+
+Each source dir need a Rules.mk that tell bob what it needs to build.
+
+```bash
+cd qrpglesrc/
+touch Rules.mk
+```
+
+Add this simple Makefile notation
+
+```bash
+HELLO.PGM: hello.pgm.rpgle
+```
+
+That's it, it shuld be a success and look something like this
+
+```bash
+Running Action: makei build (Time PM)
+Working directory: /home/Your_User/builds/simple
+Commands:
+	makei build
+
+> /QOpenSys/pkgs/bin/make -k BUILDVARSMKPATH="/tmp/tmpu5na7fv9" -k BOB="/QOpenSys/pkgs/lib/bob" -f "/QOpenSys/pkgs/lib/bob/src/mk/Makefile" all
+=== Creating Bound RPG Program [HELLO] in Your_Library
+CRTBNDRPG srcstmf('/home/Your_User/builds/simple/qrpglesrc/hello.pgm.rpgle') PGM(Your_Library/HELLO) TGTCCSID(*JOB) DBGVIEW(*ALL) OPTION(*EVENTF) TEXT('') INCDIR(*NONE)
+✓ HELLO.PGM was created successfully!
+
+Objects:             0 failed 1 succeed 1 total
+Build Completed!
+```
+
 ### Run
+
+
 
 ## Create lil_complex project
 
