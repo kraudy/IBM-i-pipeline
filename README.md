@@ -32,7 +32,7 @@ mkdir $HOME/cool_ibm
 cd $HOME/cool_ibm
 ```
 
-For this part you need to have set up the github ssh keys. Clone the repo to the cool dir and cd into it.
+For this part you need to have set up the github ssh keys. Clone the repo to the cool dir, cd into it and set up a vscode [workspace](https://code.visualstudio.com/docs/editing/workspaces/workspaces) (optional but is very useful).
 
 ```bash
 git clone git@github.com:Your_User/Your_cool_repo.git
@@ -41,20 +41,50 @@ cd ./Your_cool_repo
 
 That's it, you can do a ```git status``` to check.
 
-## Create dir struct
+## Create repo dir struct
 
-We need a directory struct that let us have multiple ibm i projects inside the same git repo
+We need a directory struct that let us have multiple ibm i projects inside the same git repo. Common sense stuff.
+
 ```bash
-mkdir empty
-mkdir simple
-mkdir lil_complex
+mkdir ./empty && mkdir ./simple && mkdir ./lil_complex
 ```
+
+Add these folders to your workspace (File -> Add Folder to Workspace)
 
 ## Create empty project
 
+So, this is the simplest ibm i project that you can make, no source code for now.
 
+In the ibm i project explorer select the empty dir and create the configuration files, it automaitcally creates two files.
+
+.gitignore
+```bash
+.logs
+.evfevent
+.env
+```
+
+.iproj.json
+```json
+{
+  "description": "Empty project"
+}
+```
+
+We actually don't need this .gitignore since we already have one in our repo but you can add the ignored extensions to that.
+
+If you want to do it manually just create the iproj.json file inside a dir and the ibm i project explorer will detect it. That's it
 
 ### Commit changes
+
+Now we need to sync the local changes with our github repo. This is the idea: Check what have changed, add it to the staged area, commit it and push it to your github repo. Very simple
+
+```bash
+git status # Take a peek
+git add .  # Add all to the staged area
+git commit -m "My cool ibm i project" # Commit the staged changes with a descriptive message
+git push   # Send it to your github repo
+```
 
 ## Create simple project
 
