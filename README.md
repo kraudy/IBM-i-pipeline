@@ -15,18 +15,31 @@ Here is a list:
 - [WSL Ubuntu](https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux)
 - [ACS](https://www.ibm.com/support/pages/ibm-i-access-client-solutions)
 - [VsCode](https://code.visualstudio.com/)
-- [Code for IBM I](https://codefori.github.io/docs/)
-- [IBM I project explorer](https://marketplace.visualstudio.com/items?itemName=IBM.vscode-ibmi-projectexplorer)
+  - [Code for IBM I](https://codefori.github.io/docs/)
+  - [IBM I project explorer](https://marketplace.visualstudio.com/items?itemName=IBM.vscode-ibmi-projectexplorer)
+  - [Remote WSL](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl)
 - [PUB400 User](https://pub400.com/cgi/signup.nd/start)
 
 
 ## Create repo
 
-We simply create a github repo and clone it to our Ubuntu WSL
+Just go to your github account and on the Repositories tab click New, create the new repo with a readme and maybe a MIT liscense if you feel like so.
+
+Now open you WSL from VsCode using the Remote WSL plugin. Create a dir, cd into it.
 
 ```bash
-git clone git@github.com:Your_User/Your_repo.git
+mkdir $HOME/cool_ibm
+cd $HOME/cool_ibm
 ```
+
+For this part you need to have set up the github ssh keys. Clone the repo to the cool dir and cd into it.
+
+```bash
+git clone git@github.com:Your_User/Your_cool_repo.git
+cd ./Your_cool_repo
+```
+
+That's it, you can do a ```git status``` to check.
 
 ## Create dir struct
 
