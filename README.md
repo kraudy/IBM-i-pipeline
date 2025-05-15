@@ -39,7 +39,7 @@ git clone git@github.com:Your_User/Your_cool_repo.git
 cd ./Your_cool_repo
 ```
 
-That's it, you can do a ```git status``` to check.
+That's it, you can do a `git status` to check.
 
 ## Create repo dir struct
 
@@ -88,7 +88,7 @@ git push   # Send it to your github repo
 
 ## Create simple project
 
-Use the ibm i project explorer to initialize the ```./simple``` project like we did with the empty one.
+Use the ibm i project explorer to initialize the `./simple` project like we did with the empty one.
 
 Lets create a dir that represents a source phisical file (IBM I Intro repo here) and cd into it.
 
@@ -148,9 +148,9 @@ By this point we are ready to compile the hello world.
 
 Go to the simple ibm i project and hit run, then select Run build.
 
-It will ask you to set the build command, the default is ```makei build``` that should be fine since we are using [BOB](https://github.com/IBM/ibmi-bob). It will deploy the source and look for a Rules.mk file in the project root, which we don't have, lets make it.
+It will ask you to set the build command, the default is `makei build` that should be fine since we are using [BOB](https://github.com/IBM/ibmi-bob). It will deploy the source and look for a Rules.mk file in the project root, which we don't have, lets make it.
 
-You can make a template with the command ```makei init``` directly on PASE but we'll do that later. The Rules.mk file tells bob the dir struct inside your project. Go to your project root and creat it
+You can make a template with the command `makei init` directly on PASE but we'll do that later. The Rules.mk file tells bob the dir struct inside your project. Go to your project root and creat it
 
 ```bash
 cd ..
@@ -178,7 +178,7 @@ Add this simple Makefile notation
 HELLO.PGM: hello.pgm.rpgle
 ```
 
-That's it, it shuld be a success and look something like this. If you look closely we are actually using ```make``` under the hood.
+That's it, it shuld be a success and look something like this. If you look closely we are actually using `make` under the hood.
 
 ```bash
 Running Action: makei build (Time PM)
@@ -195,7 +195,7 @@ Objects:             0 failed 1 succeed 1 total
 Build Completed!
 ```
 
-You can find the compiler output (Spool file) at ```.../simple/.logs```
+You can find the compiler output (Spool file) at `.../simple/.logs`
 
 ### Run
 
@@ -220,7 +220,15 @@ Commit your changes and push them to the github repo.
 
 Now we create a little more complex project structure.
 
-We will be using Edmund [Payroll project](https://github.com/edmundreinhardt/payroll-from-qsys/tree/main). You can just clone it to another dir and then copy the dir struct with ```cp```. If you decide to clone it here, directly, you will need to delete the git file to keep our idea of having only one repo with many projects. For now, hang on.
+We will be using Edmund [Payroll project](https://github.com/edmundreinhardt/payroll-from-qsys/tree/main). You can just clone it to another dir and then copy the dir struct with `cp`. If you decide to clone it here, directly, you will need to delete the git file to keep our idea of having only one repo with many projects. For now, hang on.
+
+Lets use a cool git functionality, a branch (Git, under the hood is actually the [Merkle tree](https://en.wikipedia.org/wiki/Merkle_tree) algorithm, if you are into that kind of thing). Since we are gonna do a little bigger change this time, lets use a branch in case we break something (This is what you usually do on bigger projects or when you want to try something kinda wild).
+
+```bash
+cd ../../ # Go to your repo root
+git switch -c payroll # This creates the new branch and changes you to it. You can also do `git checkout` but i don't like that.
+git branch # Check that you are actually on the new payroll branch.
+```
 
 This is our dir struct
 
@@ -229,9 +237,9 @@ cd ../../payroll
 mkdir ./qddssrc && mkdir ./qrpglesrc && mkdir ./qsqlsrc
 ```
 
-Here we use ```makei init``` directly on PASE to get a template.
+Here we use `makei init` directly on PASE to get a template.
 
-Also, we can have specific configuration for each source dir with a ```.ibmi.json``` file
+Also, we can have specific configuration for each source dir with a `.ibmi.json` file
 
 
 ### Commit changes
