@@ -150,7 +150,7 @@ Go to the simple ibm i project and hit run, then select Run build.
 
 It will ask you to set the build command, the default is ```makei build``` that should be fine since we are using [BOB](https://github.com/IBM/ibmi-bob). It will deploy the source and look for a Rules.mk file in the project root, which we don't have, lets make it.
 
-The Rules.mk file tells bob the dir struct inside your project. Go to your project root and creat it
+You can make a template with the command ```makei init``` directly on PASE but we'll do that later. The Rules.mk file tells bob the dir struct inside your project. Go to your project root and creat it
 
 ```bash
 cd ..
@@ -178,7 +178,7 @@ Add this simple Makefile notation
 HELLO.PGM: hello.pgm.rpgle
 ```
 
-That's it, it shuld be a success and look something like this
+That's it, it shuld be a success and look something like this. If you look closely we are actually using ```make``` under the hood.
 
 ```bash
 Running Action: makei build (Time PM)
@@ -195,11 +195,30 @@ Objects:             0 failed 1 succeed 1 total
 Build Completed!
 ```
 
+You can find the compiler output (Spool file) at ```.../simple/.logs```
+
 ### Run
 
+Log in to your PUB400 account using ACS 5250 terminal emulator, change the curlib, go to your library and call the Hello program
 
+```bash
+chgcurlib Your_Lib
+wrklibpdm Your_Lib
+OP 12
+OP 16
+```
+
+You should see something like this
+
+```bash
+DSPLY  Hello world                                   
+```
 
 ## Create lil_complex project
+
+Now we create a little more complex project structure.
+
+Here we use ```makei init``` directly on PASE to get a template.
 
 ### Commit changes
 
