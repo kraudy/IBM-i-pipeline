@@ -237,7 +237,27 @@ cd ./lil_complex
 mkdir ./qddssrc && mkdir ./qrpglesrc && mkdir ./qsqlsrc
 ```
 
-Here we use `makei init` directly on PASE to get a template.
+Go to lil_complex project on the ibm project explorer. On Variables set the data libary, on Source set the deploy location, something like this `/home/Your_User/builds/lil_complex` and deploy. (AIX intro here)
+
+Go to the deployed location on the IFS browser of code for ibm i, rigth click `Open terminal here`. This should open a new terminal inside your VsCode. Now, you have the terminal of your WSL alongside the PASE terminal on the remote Power. As you may tell, that is really nice, we should be grateful to our Code for IBM I friends.
+
+Lets do a little check for `makei`
+
+```bash
+ls -l /QOpenSys/pkgs/bin/makei # You can check if it exist like hits
+# lrwxrwxrwx 1 qsys 0 64 Jan  6 14:43 /QOpenSys/pkgs/bin/makei -> /QOpenSys/pkgs/lib/bob/bin/makei
+-bash-5.2$ which makei
+#/QOpenSys/pkgs/bin/makei <--- This should be the output
+```
+
+If `which makei` does not works, you may need to set up a `.profile` on your home dir at `/home/Your_User/`
+
+```bash
+touch ./.profile
+echo "export PATH=/QOpenSys/pkgs/bin:$PATH" > ./.profile
+```
+
+Time to make our Rules and make template with `makei init`.
 
 Also, we can have specific configuration for each source dir with a `.ibmi.json` file
 
