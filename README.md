@@ -214,11 +214,25 @@ You should see something like this
 DSPLY  Hello world                                   
 ```
 
+Commit your changes and push them to the github repo.
+
 ## Create lil_complex project
 
 Now we create a little more complex project structure.
 
+We will be using Edmund [Payroll project](https://github.com/edmundreinhardt/payroll-from-qsys/tree/main). You can just clone it to another dir and then copy the dir struct with ```cp```. If you decide to clone it here, directly, you will need to delete the git file to keep our idea of having only one repo with many projects. For now, hang on.
+
+This is our dir struct
+
+```bash
+cd ../../payroll
+mkdir ./qddssrc && mkdir ./qrpglesrc && mkdir ./qsqlsrc
+```
+
 Here we use ```makei init``` directly on PASE to get a template.
+
+Also, we can have specific configuration for each source dir with a ```.ibmi.json``` file
+
 
 ### Commit changes
 
