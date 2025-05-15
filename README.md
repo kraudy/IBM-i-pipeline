@@ -226,14 +226,14 @@ Lets use a cool git functionality, a branch (Git, under the hood is actually the
 
 ```bash
 cd ../../ # Go to your repo root
-git switch -c payroll # This creates the new branch and changes you to it. You can also do `git checkout` but i don't like that.
-git branch # Check that you are actually on the new payroll branch.
+git switch -c lil_complex # This creates the new branch and changes you to it. You can also do `git checkout` but i don't like that.
+git branch # Check that you are actually on the new lil_complex branch.
 ```
 
 This is our dir struct
 
 ```bash
-cd ../../payroll
+cd ./lil_complex
 mkdir ./qddssrc && mkdir ./qrpglesrc && mkdir ./qsqlsrc
 ```
 

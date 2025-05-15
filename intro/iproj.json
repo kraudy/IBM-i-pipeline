@@ -1,8 +1,0 @@
-{
-  "description": "Github pipeline",
-  "preUsrlibl": [],
-  "curlib": "&CURLIB",
-  "buildCommand": "makei build",
-  "buildObjectCommand": "makei b -t {object}",
-  "compileCommand": "makei compile -f {filename}"
-}
