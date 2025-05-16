@@ -11,6 +11,8 @@ Here, we take the Linux (Ubuntu) approach from Windows, using [WSL](https://en.w
 
 What else do we need? Well, a Power Server, which  is actually a very important requirement. Since we don't have one or can't buy one, we will be using [PUB400](https://pub400.com/), which, luckily, is a free Power Server on the internet. 
 
+If you need help setting up ACS, [putty](https://en.wikipedia.org/wiki/PuTTY) or Code for IBM i with PUB400, here is a nice [tutorial by Marco](https://github.com/MarcoDeSenas/IBMi-topics-thanks-to-pub400/blob/main/HowTo/Workstation%20tools.md) about it. 
+
 Here is a list: 
 - [WSL Ubuntu](https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux)
 - [ACS](https://www.ibm.com/support/pages/ibm-i-access-client-solutions)
@@ -43,7 +45,7 @@ That's it, you can do a `git status` to check.
 
 ## Create repo dir struct
 
-We need a directory struct that let us have multiple ibm i projects inside the same git repo. Common sense stuff.
+We need a directory struct that let us have multiple ibm i projects inside the same git repo. Because that's how i roll.
 
 ```bash
 mkdir ./empty && mkdir ./simple && mkdir ./lil_complex
@@ -150,7 +152,7 @@ Go to the simple ibm i project and hit run, then select Run build.
 
 It will ask you to set the build command, the default is `makei build` that should be fine since we are using [BOB](https://github.com/IBM/ibmi-bob). It will deploy the source and look for a Rules.mk file in the project root, which we don't have, lets make it.
 
-You can make a template with the command `makei init` directly on PASE but we'll do that later. The Rules.mk file tells bob the dir struct inside your project. Go to your project root and creat it
+You can make a template with the command `makei init` directly on PASE. It will take you through some steps that creates an `iproj.json` file for the project (we already have it), an empty `Rules.mk` file (with only `SUBDIRS :=`) and other config. The Rules.mk file tells bob the dir struct inside your project. We are going to do it manually, go to your project root and creat it
 
 ```bash
 cd ..
@@ -257,7 +259,7 @@ touch ./.profile
 echo "export PATH=/QOpenSys/pkgs/bin:$PATH" > ./.profile
 ```
 
-Time to make our Rules and make template with `makei init`.
+If you want to try `makei init` here just for the gigs, delete the `iproj.json` and go ahead.
 
 Also, we can have specific configuration for each source dir with a `.ibmi.json` file
 
