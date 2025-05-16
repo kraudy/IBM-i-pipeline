@@ -272,6 +272,14 @@ If you want to try `makei init` here just for the gigs, delete the `iproj.json` 
 ### Making the make
 
 So far, we have the lil_complex project almost complete, now we need to tell bob how to build it each source on each dir. We can have a specific configuration for each source dir with a `.ibmi.json` file but is not necessary here.
+Sample `.ibmi.json`
+```json
+{
+  "build": {
+    "tgtCcsid": "37",
+  }
+}
+```
 
 `Rules.mk` uses the same notation as Makefiles which is basically `Object to build: dependencies needed`. Here are the bob's [docs](https://ibm.github.io/ibmi-bob/#/prepare-the-project/rules.mk)
 
