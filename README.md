@@ -239,6 +239,12 @@ cd ./lil_complex
 mkdir ./qddssrc && mkdir ./qrpglesrc && mkdir ./qsqlsrc
 ```
 
+Create the `Rules.mk` file of the project.
+
+```bash
+touch ./Rules.mk && echo "SUBDIRS = qddssrc qrpglesrc qsqlsrc" > ./Rules.mk
+```
+
 Go to lil_complex project on the ibm project explorer. On Variables set the data libary, on Source set the deploy location, something like this `/home/Your_User/builds/lil_complex` and deploy. (AIX intro here)
 
 Go to the deployed location on the IFS browser of code for ibm i, rigth click `Open terminal here`. This should open a new terminal inside your VsCode. Now, you have the terminal of your WSL alongside the PASE terminal on the remote Power. As you may tell, that is really nice, we should be grateful to our Code for IBM I friends.
@@ -259,10 +265,9 @@ touch ./.profile
 echo "export PATH=/QOpenSys/pkgs/bin:$PATH" > ./.profile
 ```
 
-If you want to try `makei init` here just for the gigs, delete the `iproj.json` and go ahead.
+If you want to try `makei init` here just for the gigs, delete the `iproj.json` and go ahead. After that just redeploy the project if you don't like the changes.
 
 Also, we can have specific configuration for each source dir with a `.ibmi.json` file
-
 
 ### Commit changes
 
