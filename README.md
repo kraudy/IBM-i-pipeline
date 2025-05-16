@@ -269,14 +269,43 @@ touch ./.profile && echo "export PATH=/QOpenSys/pkgs/bin:$PATH" > ./.profile
 
 If you want to try `makei init` here just for the gigs, delete the `iproj.json` and go ahead. After that just redeploy the project if you don't like the changes.
 
+### Making the make
+
+So far, we have the lil_complex project almost complete, now we need to tell bob how to build it each source on each dir. We can have a specific configuration for each source dir with a `.ibmi.json` file but is not necessary here.
+
+`Rules.mk` uses the same notation as Makefiles which is basically `Object to build: dependencies needed`. Here are the bob's [docs](https://ibm.github.io/ibmi-bob/#/prepare-the-project/rules.mk)
+
+```bash
+echo "MSTDSP.FILE: mstdsp.dspf EMPMST.FILE PRJMST.FILE RSNMST.FILE" > ./qddssrc/Rules.mk 
+echo "PAYROLL.PGM: payroll.pgm.rpgle MSTDSP.FILE EMPMST.FILE PRJMST.FILE RSNMST.FILE" > ./qrpglesrc/Rules.mk 
+echo -e "EMPMST.FILE: empmst.table \nPRJMST.FILE: prjmst.table \nRSNMST.FILE: rsnmst.table" > ./qsqlsrc/Rules.mk
+```
+
+It should compile with no problem. If you got an issue check that your &curlib on the ibm project explorer is set.
+
 ### Commit changes
 
-So far, 
+Remember that we are on another branch. Everything works so now we want the changes on the main brach
 
-Also, we can have specific configuration for each source dir with a `.ibmi.json` file
+```bash
+git status # check what has changed
+git diff # if you want to see the changes
+git add --all # add everthing, don't look back
+git commit -m "Complete cool lil project" 
+git push
+```
 
-### Commit changes
+`git push` should not work. Change to your main branch, do a merge, push and delete the lil_proyect branch
 
-### Compile
+```bash
+git switch master # Note how the dir struct changes. The magic of git
+git merge lil_complex # The changes are back!
+git push # Changes to github
+git branch -d lil_complex # Delete it, we don't need it anymore. The branch life cycle.
+```
 
-### Run
+That's it!
+
+## Wrapping up
+
+If you have any suggestions make an issue and i'll check it out. Thanks.
