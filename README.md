@@ -36,6 +36,8 @@ cd $HOME/cool_ibm
 
 For this part you need to have set up the github ssh keys. Clone the repo to the cool dir, cd into it and set up a vscode [workspace](https://code.visualstudio.com/docs/editing/workspaces/workspaces) (optional but is very useful).
 
+Sanjula has a good [git concepts tutorial](https://github.com/SanjulaGanepola/ibmi-talks/tree/main/Git%20Concepts%20I%20Wish%20I%20Knew%20Years%20Ago) for ibmers if you need some background.
+
 ```bash
 git clone git@github.com:Your_User/Your_cool_repo.git
 cd ./Your_cool_repo
@@ -222,7 +224,7 @@ Commit your changes and push them to the github repo.
 
 Now we create a little more complex project structure.
 
-We will be using Edmund [Payroll project](https://github.com/edmundreinhardt/payroll-from-qsys/tree/main). You can just clone it to another dir and then copy the dir struct with `cp`. If you decide to clone it here, directly, you will need to delete the git file to keep our idea of having only one repo with many projects. For now, hang on.
+We will be using Edmund [Payroll project](https://github.com/edmundreinhardt/payroll-from-qsys/tree/main). You can just clone it to another dir and then copy the dir struct with `cp`. If you decide to clone it here, directly, you will need to delete the git file to keep our idea of having only one repo with many projects. We are doing it the manual way for learning sake.
 
 Lets use a cool git functionality, a branch (Git, under the hood is actually the [Merkle tree](https://en.wikipedia.org/wiki/Merkle_tree) algorithm, if you are into that kind of thing). Since we are gonna do a little bigger change this time, lets use a branch in case we break something (This is what you usually do on bigger projects or when you want to try something kinda wild).
 
@@ -237,6 +239,7 @@ This is our dir struct
 ```bash
 cd ./lil_complex
 mkdir ./qddssrc && mkdir ./qrpglesrc && mkdir ./qsqlsrc
+touch ./qddssrc/Rules.mk && touch ./qrpglesrc/Rules.mk && touch ./qsqlsrc/Rules.mk
 ```
 
 Create the `Rules.mk` file of the project.
@@ -261,11 +264,14 @@ ls -l /QOpenSys/pkgs/bin/makei # You can check if it exist like hits
 If `which makei` does not works, you may need to set up a `.profile` on your home dir at `/home/Your_User/`
 
 ```bash
-touch ./.profile
-echo "export PATH=/QOpenSys/pkgs/bin:$PATH" > ./.profile
+touch ./.profile && echo "export PATH=/QOpenSys/pkgs/bin:$PATH" > ./.profile
 ```
 
 If you want to try `makei init` here just for the gigs, delete the `iproj.json` and go ahead. After that just redeploy the project if you don't like the changes.
+
+### Commit changes
+
+So far, 
 
 Also, we can have specific configuration for each source dir with a `.ibmi.json` file
 
