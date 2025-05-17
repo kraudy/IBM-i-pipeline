@@ -1,15 +1,15 @@
 # IBM-i-pipeline
 This is intended to give a guideline on using a modern [IBM I](https://en.wikipedia.org/wiki/IBM_i) Pipeline.
-Some knowledge about [ILE](http://en.wikipedia.org/wiki/Integrated_Language_Environment), [PASE](https://en.wikipedia.org/wiki/IBM_i#PASE), Git and Linux is helpfull but not necessary. I'll make another repo for those.
+Some knowledge about [ILE](http://en.wikipedia.org/wiki/Integrated_Language_Environment), [PASE](https://en.wikipedia.org/wiki/IBM_i#PASE), Git and Linux is helpfull but not necessary.
 
-Modern developments are usually done on Linux or Mac but most IBM I developer usually have a Windows OS and from that they connect to the Power([AS/400](https://en.wikipedia.org/wiki/IBM_AS/400), iSeries) using [ACS](https://www.ibm.com/support/pages/ibm-i-access-client-solutions) (Access Client Solutions) with a [5250 Termianl emulator](https://en.wikipedia.org/wiki/IBM_5250) over telnet.  
+Modern developments are usually done on Linux or Mac but most IBM I developer usually have a Windows OS and from that they connect to the Power([AS/400](https://en.wikipedia.org/wiki/IBM_AS/400), iSeries) using [ACS](https://www.ibm.com/support/pages/ibm-i-access-client-solutions) (Access Client Solutions) with a [5250 Terminal emulator](https://en.wikipedia.org/wiki/IBM_5250) over telnet.  
 
-Once inside, the IBM I developer needs to do what he was created to do: Write some code; for that we have [SEU](https://www.nicklitten.com/course/what-is-seu-source-entry-utility/) (Source entry utility or stone age entry utility ), [RDI](https://www.nicklitten.com/module/rational-developer-rdi/) (Rational Developer for I) or (the modern one) [VsCode](https://code.visualstudio.com/). Nick Litten has a nice resume about this on his blog [
-Windows Setup for IBM i Developers](https://www.nicklitten.com/windows-setup-ibm-developers/) 
+Once inside the Power, the IBM I developer needs to do what he was created to do: Write some cool code that will run for the ages. For that we have [SEU](https://www.nicklitten.com/course/what-is-seu-source-entry-utility/) (Source entry utility or stone age entry utility ), [RDI](https://www.nicklitten.com/module/rational-developer-rdi/) (Rational Developer for I) or (the modern one) [VsCode](https://code.visualstudio.com/). 
 
-Here, we take the Linux (Ubuntu) approach from Windows, using [WSL](https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux) and VsCode.
+Nick Litten has a nice resume about these tools on his blog [
+Windows Setup for IBM i Developers](https://www.nicklitten.com/windows-setup-ibm-developers/). Here, we take the Linux (Ubuntu) approach from Windows, using [WSL](https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux) and VsCode.
 
-What else do we need? Well, a Power Server, which  is actually a very important requirement. Since we don't have one or can't buy one, we will be using [PUB400](https://pub400.com/), which, luckily, is a free Power Server on the internet. 
+What else do we need? Well, a Power Server, which  is actually a very important requirement. Since we don't have one or can't buy one, we will be using [PUB400](https://pub400.com/), which, luckily for us, is a free Power Server on the internet. Nice! Shout out to our boys at pub400. 
 
 If you need help setting up ACS, [putty](https://en.wikipedia.org/wiki/PuTTY) or Code for IBM i with PUB400, here is a nice [tutorial by Marco](https://github.com/MarcoDeSenas/IBMi-topics-thanks-to-pub400/blob/main/HowTo/Workstation%20tools.md) about it. 
 
@@ -34,9 +34,10 @@ mkdir $HOME/cool_ibm
 cd $HOME/cool_ibm
 ```
 
-For this part you need to have set up the github ssh keys. Clone the repo to the cool dir, cd into it and set up a vscode [workspace](https://code.visualstudio.com/docs/editing/workspaces/workspaces) (optional but is very useful).
+For this part you need to have set up the github ssh keys. If you need some guidance with this, i'll hook you up. Sanjula has a good [git concepts tutorial](https://github.com/SanjulaGanepola/ibmi-talks/tree/main/Git%20Concepts%20I%20Wish%20I%20Knew%20Years%20Ago) for ibmers and non-ibmers if you need some background.
 
-Sanjula has a good [git concepts tutorial](https://github.com/SanjulaGanepola/ibmi-talks/tree/main/Git%20Concepts%20I%20Wish%20I%20Knew%20Years%20Ago) for ibmers if you need some background.
+Clone the repo to the cool dir, cd into it and set up a vscode [workspace](https://code.visualstudio.com/docs/editing/workspaces/workspaces) (optional but is very useful).
+
 
 ```bash
 git clone git@github.com:Your_User/Your_cool_repo.git
@@ -47,19 +48,19 @@ That's it, you can do a `git status` to check.
 
 ## Create repo dir struct
 
-We need a directory struct that let us have multiple ibm i projects inside the same git repo. Because that's how i roll.
+We need a directory struct that let us have multiple ibm i projects inside the same git repo... because that's how i roll.
 
 ```bash
 mkdir ./empty && mkdir ./simple && mkdir ./lil_complex
 ```
 
-Add these folders to your workspace (File -> Add Folder to Workspace)
+Add these folders to your workspace on VsCode (File -> Add Folder to Workspace)
 
 ## Create empty project
 
 So, this is the simplest ibm i project that you can make, no source code for now.
 
-In the ibm i project explorer select the empty dir and create the configuration files, it automaitcally creates two files.
+In the ibm i project explorer select the empty dir and create the configuration files, it automaitcally creates two files: `.gitignore` and `.iproj.json`.
 
 .gitignore
 ```bash
@@ -75,9 +76,9 @@ In the ibm i project explorer select the empty dir and create the configuration 
 }
 ```
 
-We actually don't need this .gitignore since we already have one in our repo but you can add the ignored extensions to that.
+We actually don't need this `.gitignore` since we already have one in our repo but you can add the ignored extensions to that.
 
-If you want to do it manually just create the iproj.json file inside a dir and the ibm i project explorer will detect it. That's it
+If you want to do it manually just create the `iproj.json` file inside the `./empty` dir and the ibm i project explorer will detect it. That's it.
 
 ### Commit changes
 
@@ -92,9 +93,11 @@ git push   # Send it to your github repo
 
 ## Create simple project
 
+We already created the simplest project, an empty one, now we'll create a simple one.
+
 Use the ibm i project explorer to initialize the `./simple` project like we did with the empty one.
 
-Lets create a dir that represents a source phisical file (IBM I Intro repo here) and cd into it.
+Lets create a dir that represents a source phisical file (IBM I Intro repo here soon) and cd into it.
 
 ```bash
 cd ./simple
@@ -103,13 +106,13 @@ mkdir ./qrpglesrc && cd ./qrpglesrc
 
 ### Create first source
 
-Add our [RPG](https://en.wikipedia.org/wiki/IBM_RPG) (RPG intro repo here) hello world source. Note the naming convention.
+Add our [RPG](https://en.wikipedia.org/wiki/IBM_RPG) (RPG intro repo here) hello world source. Note the naming convention, our pipeline will use that name to know how to compile the soure `rpgle -> languaje` `pgm -> ibm i object`.
 
 ```bash
 touch hello.pgm.rpgle
 ```
 
-Now, the code
+Now, the code; don't worry if it looks kind of cryptic for you. I gotcha (RPG intro repo here)
 
 ```rpg
 **free
