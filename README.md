@@ -175,14 +175,19 @@ Hit run again in the ibm i `simple` project. But... it still didn't build our pr
 
 Each source dir needs a `Rules.mk` that tells bob what it needs to build on that dir. This is simple [BOB Makefile notation](https://ibm.github.io/ibmi-bob/#/prepare-the-project/rules.mk) which is basically `Object to build: dependencies needed`. 
 
-Note: You can also overwrite compilation options like this `HELLO.PGM: private TGTRLS := V7R1M0` if you want to get into it.
-
 ```bash
 cd qrpglesrc/
 touch Rules.mk && echo "HELLO.PGM: hello.pgm.rpgle" > ./Rules.mk
 ```
 
-That's it, it should be a success and look something like this. If you look closely we are actually using `make` under the hood (I told you!).
+You can also overwrite compilation options like this if you want to get into that.
+```bash
+HELLO.PGM: private DBGVIEW = *SOURCE
+HELLO.PGM: private TEXT = Sample text
+HELLO.PGM: hello.pgm.rpgle
+```
+
+That's it, it should be a success and look something like this. If you look closely we are actually using `make` under the hood... i told you!
 
 ```bash
 Running Action: makei build (Time PM)
