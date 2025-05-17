@@ -112,7 +112,7 @@ Add our [RPG](https://en.wikipedia.org/wiki/IBM_RPG) (RPG intro repo here) hello
 touch hello.pgm.rpgle
 ```
 
-Now, the code; don't worry if it looks kind of cryptic for you. I gotcha (RPG intro repo here)
+Now, the code; don't worry if it looks kind of cryptic for you. I gotcha (RPG intro repo here soon)
 
 ```rpg
 **free
@@ -158,11 +158,11 @@ Go to the simple ibm i project, [hit run and select Run build](https://ibm.githu
 
 It will ask you to set the build command, the default is `makei build` that should be fine since we are using [BOB](https://github.com/IBM/ibmi-bob). It will deploy the source and look for a `Rules.mk` file in the project root, which we don't have. Lets make it.
 
-Note: you can also check the [code4i actions](https://codefori.github.io/docs/developing/actions/) for compiling objects. 
+>*Note: you can also check the [code4i actions](https://codefori.github.io/docs/developing/actions/) for compiling objects.* 
 
 With the command `makei init` you can make a template directly on PASE. It will take you through some steps that creates an `iproj.json` file for the project (we already have it), an empty `Rules.mk` file (with only `SUBDIRS :=`) and other config. The `Rules.mk` file tells bob the dir struct inside your project. 
 
-Extra: BOB is a python wrapper with ILE objects compilation commands that generates a Makefile and uses gmake under the hood. Here are the [BOB rules](https://github.com/IBM/ibmi-bob/blob/master/src/mk/def_rules.mk).
+>*Extra: BOB is a python wrapper with ILE objects compilation commands that generates a Makefile and uses gmake under the hood. Here are the [BOB rules](https://github.com/IBM/ibmi-bob/blob/master/src/mk/def_rules.mk).*
 
 We are going to do it manually, go to your project root and creat the rules file. Add the source file dirs of your project to this rules file. We only have one.
 
@@ -187,7 +187,7 @@ HELLO.PGM: private TEXT = Sample text
 HELLO.PGM: hello.pgm.rpgle
 ```
 
-That's it, it should be a success and look something like this. If you look closely we are actually using `make` under the hood... i told you!
+That's it, it should be a success because we breathe success. If you look closely we are actually using `make` under the hood... i told you!. It should look something like this.
 
 ```bash
 Running Action: makei build (Time PM)
@@ -204,7 +204,7 @@ Objects:             0 failed 1 succeed 1 total
 Build Completed!
 ```
 
-You can find the compiler output (Spool file) at `.../simple/.logs`
+You can find the compiler output (Spool file) and the joblog info at `.../simple/.logs`
 
 ### Run
 
@@ -316,6 +316,10 @@ git branch -d lil_complex # Delete it, we don't need it anymore. The branch life
 ```
 
 That's it!
+
+## Extras
+
+If you want to go deeper into ibm pipeline and devops i suggest this excelent repo that Ravisankar made: [DevOps on IBM I](https://github.com/ravisankar-PIO/devopsonibmi) where he goes deeper on more advanced topics.
 
 ## Wrapping up
 
