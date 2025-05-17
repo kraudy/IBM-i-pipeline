@@ -60,7 +60,7 @@ Add these folders to your workspace on VsCode (File -> Add Folder to Workspace)
 
 So, this is the simplest ibm i project that you can make, no source code for now.
 
-In the ibm i project explorer select the empty dir and create the configuration files, it automaitcally creates two files: `.gitignore` and `.iproj.json`.
+In the ibm i project explorer select the empty dir and create the configuration files, it automaitcally creates two files: `.gitignore` and `.iproj.json`. Here you go [Create new project](https://ibm.github.io/vscode-ibmi-projectexplorer/#/pages/projectExplorer/create-new-project)
 
 .gitignore
 ```bash
@@ -82,7 +82,7 @@ If you want to do it manually just create the `iproj.json` file inside the `./em
 
 ### Commit changes
 
-Now we need to sync the local changes with our github repo. This is the idea: Check what have changed, add it to the staged area, commit it and push it to your github repo. Very simple
+Now we need to sync the local changes with our github repo. Here is the idea: Check what have changed, add it to the staged area, commit it and push it to your github repo. Very simple
 
 ```bash
 git status # Take a peek
@@ -122,14 +122,15 @@ Dsply 'Hello world!, edited';
 return;
 ```
 
-That is our first source file. Nice!
+That is our first source file. Check: Good.
 
 ### Compile
 
 Now, how to compile it?.
 
-First, connect to PUB400 with the code for ibm i plugin.
-On the ibm i project explorer go to the simple project and set the deploy location, sould look something like this
+First, connect to PUB400 with the code for ibm i plugin. Here you have the [Code for IBM i Docs](https://codefori.github.io/docs/quickstart/). There are actually pretty nice, shout out to Liam, Sébastien and the Code4i people.
+
+On the ibm i project explorer go to the simple project and set the [deploy location](https://ibm.github.io/vscode-ibmi-projectexplorer/#/pages/projectExplorer/source-and-deployment). Should look something like this
 
 ```bash
 /home/Your_User/builds/simple
@@ -137,55 +138,45 @@ On the ibm i project explorer go to the simple project and set the deploy locati
 
 Select the deploy method, compare should be fine.
 
-Also, this automatically generates a .env for your project that looks similar to this, which is basically a library list for the job on the ibm i (don't worry about these definitions if you don't know them)
+Also, this automatically generates a `.env` file for your project that looks similar to this, which is basically a library list for the job on the ibm i. Again don't worry about these definitions if you don't know them (IBM I Intro repo here soon).
 
 ```bash
 LIBL=QGPL QTEMP GAMES400
 ```
 
-Now set the data_library variable, this can be any of the two libraries that PUB400 gives you. It will be added to the .env file.
+Now set the `data_library` variable, this can be any of the two libraries that PUB400 gives you. It will be added to the `.env` file.
 
 ```bash
 data_library=Your_Library
 ```
 
-Make sure Your_Library is in the library list of the ibm i project and set it to current library.
+Make sure Your_Library is in the [library list of the ibm i project](https://ibm.github.io/vscode-ibmi-projectexplorer/#/pages/projectExplorer/manage-the-library-list) and set it to current library.
 
 By this point we are ready to compile the hello world.
 
-Go to the simple ibm i project and hit run, then select Run build.
+Go to the simple ibm i project and [hit run](https://ibm.github.io/vscode-ibmi-projectexplorer/#/pages/projectExplorer/run-builds-compiles-and-actions), then select Run build.
 
-It will ask you to set the build command, the default is `makei build` that should be fine since we are using [BOB](https://github.com/IBM/ibmi-bob). It will deploy the source and look for a Rules.mk file in the project root, which we don't have, lets make it.
+It will ask you to set the build command, the default is `makei build` that should be fine since we are using [BOB](https://github.com/IBM/ibmi-bob). It will deploy the source and look for a `Rules.mk` file in the project root, which we don't have. Lets make it.
 
-You can make a template with the command `makei init` directly on PASE. It will take you through some steps that creates an `iproj.json` file for the project (we already have it), an empty `Rules.mk` file (with only `SUBDIRS :=`) and other config. The Rules.mk file tells bob the dir struct inside your project. We are going to do it manually, go to your project root and creat it
+You can make a template with the command `makei init` directly on PASE. It will take you through some steps that creates an `iproj.json` file for the project (we already have it), an empty `Rules.mk` file (with only `SUBDIRS :=`) and other config. The `Rules.mk` file tells bob the dir struct inside your project. Extra: BOB is a python wrapper with ILE objects compilation commands that generates a Makefile and uses gmake under the hood. Here are the [rules](https://github.com/IBM/ibmi-bob/blob/master/src/mk/def_rules.mk).
+
+We are going to do it manually, go to your project root and creat the rules file. Add the source file dirs of your project to this rules file. We only have one.
 
 ```bash
 cd ..
-touch Rules.mk
+touch Rules.mk && echo "SUBDIRS = qrpglesrc" > ./Rules.mk
 ```
 
-Now add the dirs of your project with the source file like this, we only have one
+Hit run again in the ibm i `simple` project. But... it still didn't build our program, we need one more thing.
 
-```bash
-SUBDIRS = qrpglesrc
-```
-
-Hit run again in the ibm i simple project. But... it still didn't build our program, we need one more thing.
-
-Each source dir need a Rules.mk that tell bob what it needs to build.
+Each source dir needs a `Rules.mk` that tells bob what it needs to build on that dir. This is simple [BOB Makefile notation](https://ibm.github.io/ibmi-bob/#/prepare-the-project/rules.mk) which is basically `Object to build: dependencies needed`.
 
 ```bash
 cd qrpglesrc/
-touch Rules.mk
+touch Rules.mk && echo "HELLO.PGM: hello.pgm.rpgle" > ./Rules.mk
 ```
 
-Add this simple Makefile notation
-
-```bash
-HELLO.PGM: hello.pgm.rpgle
-```
-
-That's it, it shuld be a success and look something like this. If you look closely we are actually using `make` under the hood.
+That's it, it should be a success and look something like this. If you look closely we are actually using `make` under the hood (I told you!).
 
 ```bash
 Running Action: makei build (Time PM)
@@ -283,8 +274,6 @@ Sample `.ibmi.json`
   }
 }
 ```
-
-`Rules.mk` uses the same notation as Makefiles which is basically `Object to build: dependencies needed`. Here are the bob's [docs](https://ibm.github.io/ibmi-bob/#/prepare-the-project/rules.mk)
 
 ```bash
 echo "MSTDSP.FILE: mstdsp.dspf EMPMST.FILE PRJMST.FILE RSNMST.FILE" > ./qddssrc/Rules.mk 
