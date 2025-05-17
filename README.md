@@ -128,7 +128,7 @@ That is our first source file. Check: Good.
 
 Now, how to compile it?.
 
-First, connect to PUB400 with the code for ibm i plugin. Here you have the [Code for IBM i Docs](https://codefori.github.io/docs/quickstart/). There are actually pretty nice, shout out to Liam, Sébastien and the Code4i people.
+First, connect to PUB400 with the code for ibm i plugin. Here you have the [Code for IBM i Docs](https://codefori.github.io/docs/quickstart/). These are actually pretty nice, shout out to Liam, Sébastien and the Code4i people.
 
 On the ibm i project explorer go to the simple project and set the [deploy location](https://ibm.github.io/vscode-ibmi-projectexplorer/#/pages/projectExplorer/source-and-deployment). Should look something like this
 
@@ -136,7 +136,7 @@ On the ibm i project explorer go to the simple project and set the [deploy locat
 /home/Your_User/builds/simple
 ```
 
-Select the deploy method, compare should be fine.
+Select the deploy method, `compare` should be fine.
 
 Also, this automatically generates a `.env` file for your project that looks similar to this, which is basically a library list for the job on the ibm i. Again don't worry about these definitions if you don't know them (IBM I Intro repo here soon).
 
@@ -154,11 +154,15 @@ Make sure Your_Library is in the [library list of the ibm i project](https://ibm
 
 By this point we are ready to compile the hello world.
 
-Go to the simple ibm i project and [hit run](https://ibm.github.io/vscode-ibmi-projectexplorer/#/pages/projectExplorer/run-builds-compiles-and-actions), then select Run build.
+Go to the simple ibm i project, [hit run and select Run build](https://ibm.github.io/vscode-ibmi-projectexplorer/#/pages/projectExplorer/run-builds-compiles-and-actions).
 
 It will ask you to set the build command, the default is `makei build` that should be fine since we are using [BOB](https://github.com/IBM/ibmi-bob). It will deploy the source and look for a `Rules.mk` file in the project root, which we don't have. Lets make it.
 
-You can make a template with the command `makei init` directly on PASE. It will take you through some steps that creates an `iproj.json` file for the project (we already have it), an empty `Rules.mk` file (with only `SUBDIRS :=`) and other config. The `Rules.mk` file tells bob the dir struct inside your project. Extra: BOB is a python wrapper with ILE objects compilation commands that generates a Makefile and uses gmake under the hood. Here are the [rules](https://github.com/IBM/ibmi-bob/blob/master/src/mk/def_rules.mk).
+Note: you can also check the [code4i actions](https://codefori.github.io/docs/developing/actions/) for compiling objects. 
+
+With the command `makei init` you can make a template directly on PASE. It will take you through some steps that creates an `iproj.json` file for the project (we already have it), an empty `Rules.mk` file (with only `SUBDIRS :=`) and other config. The `Rules.mk` file tells bob the dir struct inside your project. 
+
+Extra: BOB is a python wrapper with ILE objects compilation commands that generates a Makefile and uses gmake under the hood. Here are the [BOB rules](https://github.com/IBM/ibmi-bob/blob/master/src/mk/def_rules.mk).
 
 We are going to do it manually, go to your project root and creat the rules file. Add the source file dirs of your project to this rules file. We only have one.
 
@@ -169,7 +173,9 @@ touch Rules.mk && echo "SUBDIRS = qrpglesrc" > ./Rules.mk
 
 Hit run again in the ibm i `simple` project. But... it still didn't build our program, we need one more thing.
 
-Each source dir needs a `Rules.mk` that tells bob what it needs to build on that dir. This is simple [BOB Makefile notation](https://ibm.github.io/ibmi-bob/#/prepare-the-project/rules.mk) which is basically `Object to build: dependencies needed`.
+Each source dir needs a `Rules.mk` that tells bob what it needs to build on that dir. This is simple [BOB Makefile notation](https://ibm.github.io/ibmi-bob/#/prepare-the-project/rules.mk) which is basically `Object to build: dependencies needed`. 
+
+Note: You can also overwrite compilation options like this `HELLO.PGM: private TGTRLS := V7R1M0` if you want to get into it.
 
 ```bash
 cd qrpglesrc/
