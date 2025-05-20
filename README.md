@@ -7,7 +7,7 @@ Modern developments are usually done on Linux or Mac but most IBM I developer us
 Once inside the Power, the IBM I developer needs to do what he was created to do: Write some cool code that will run for the ages. For that we have [SEU](https://www.nicklitten.com/course/what-is-seu-source-entry-utility/) (Source entry utility or stone age entry utility ), [RDI](https://www.nicklitten.com/module/rational-developer-rdi/) (Rational Developer for I) or (the modern one) [VsCode](https://code.visualstudio.com/). 
 
 Nick Litten has a nice resume about these tools on his blog [
-Windows Setup for IBM i Developers](https://www.nicklitten.com/windows-setup-ibm-developers/). Here, we take the Linux (Ubuntu) approach from Windows, using [WSL](https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux) and VsCode.
+Windows Setup for IBM i Developers](https://www.nicklitten.com/windows-setup-ibm-developers/). Here, we take the Linux (Ubuntu) approach from Windows, using [WSL](https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux)([Here is the github repo](https://github.com/microsoft/WSL)) and VsCode.
 
 What else do we need? Well, a Power Server, which  is actually a very important requirement. Since we don't have one or can't buy one, we will be using [PUB400](https://pub400.com/), which, luckily for us, is a free Power Server on the internet. Nice! Shout out to our boys at pub400. 
 
@@ -106,7 +106,7 @@ mkdir ./qrpglesrc && cd ./qrpglesrc
 
 ### Create first source
 
-Add our [RPG](https://en.wikipedia.org/wiki/IBM_RPG) (RPG intro repo here) hello world source. Note the naming convention, our pipeline will use that name to know how to compile the soure `rpgle -> languaje` `pgm -> ibm i object`.
+Add our [RPG](https://en.wikipedia.org/wiki/IBM_RPG) (RPG intro repo here soon) hello world source. Note the naming convention, our pipeline will use that name to know how to compile the soure `rpgle -> languaje` `pgm -> ibm i object`.
 
 ```bash
 touch hello.pgm.rpgle
@@ -253,7 +253,7 @@ Create the `Rules.mk` file of the project.
 touch ./Rules.mk && echo "SUBDIRS = qddssrc qrpglesrc qsqlsrc" > ./Rules.mk
 ```
 
-Go to lil_complex project on the ibm project explorer. On Variables set the data libary, on Source set the deploy location, something like this `/home/Your_User/builds/lil_complex` and deploy. (AIX intro here)
+Go to lil_complex project on the ibm project explorer. On Variables set the data libary, on Source set the deploy location, something like this `/home/Your_User/builds/lil_complex` and deploy. (AIX intro here soon)
 
 Go to the deployed location on the IFS browser of code for ibm i, rigth click `Open terminal here`. This should open a new terminal inside your VsCode. Now, you have the terminal of your WSL alongside the PASE terminal on the remote Power. As you may tell, that is really nice, we should be grateful to our Code for IBM I friends.
 
