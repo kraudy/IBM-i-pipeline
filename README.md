@@ -97,7 +97,7 @@ We already created the simplest project, an empty one, now we'll create a simple
 
 Use the ibm i project explorer to initialize the `./simple` project like we did with the empty one.
 
-Lets create a dir that represents a source phisical file (IBM I Intro repo here soon) and cd into it.
+Lets create a dir that represents a source phisical file ((IBM I Intro)[https://github.com/kraudy/ibmi_os]) and cd into it.
 
 ```bash
 cd ./simple
@@ -138,7 +138,7 @@ On the ibm i project explorer go to the simple project and set the [deploy locat
 
 Select the deploy method, `compare` should be fine.
 
-Also, this automatically generates a `.env` file for your project that looks similar to this, which is basically a library list for the job on the ibm i. Again don't worry about these definitions if you don't know them (IBM I Intro repo here soon).
+Also, this automatically generates a `.env` file for your project that looks similar to this, which is basically a library list for the job on the ibm i. Again don't worry about these definitions if you don't know them ((IBM I Intro)[https://github.com/kraudy/ibmi_os]).
 
 ```bash
 LIBL=QGPL QTEMP GAMES400
