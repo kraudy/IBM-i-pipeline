@@ -2,6 +2,8 @@
 This is intended to give a guideline on using a modern [IBM I](https://en.wikipedia.org/wiki/IBM_i) Pipeline.
 Some knowledge about [ILE](http://en.wikipedia.org/wiki/Integrated_Language_Environment), [PASE](https://en.wikipedia.org/wiki/IBM_i#PASE), Git and Linux is helpfull but not necessary.
 
+Here is an [Introduction to the IBM I Operating System](https://github.com/kraudy/ibmi_os) if you are completely new or want to do some refreshing.
+
 ## Table of Contents
 
 - [Some background](#some-background)
