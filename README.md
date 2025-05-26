@@ -2,6 +2,25 @@
 This is intended to give a guideline on using a modern [IBM I](https://en.wikipedia.org/wiki/IBM_i) Pipeline.
 Some knowledge about [ILE](http://en.wikipedia.org/wiki/Integrated_Language_Environment), [PASE](https://en.wikipedia.org/wiki/IBM_i#PASE), Git and Linux is helpfull but not necessary.
 
+## Table of Contents
+
+- [Some background](#some-background)
+- [Create repo](#create-repo)
+- [Create repo dir struct](#create-repo-dir-struct)
+- [Create empty project](#create-empty-project)
+  - [Commit changes](#commit-changes)
+- [Create simple project](#create-simple-project)
+  - [Create first source](#create-first-source)
+  - [Compile](#compile)
+  - [Run](#run)
+- [Create lil_complex project](#create-lil_complex-project)
+  - [Making the make](#making-the-make)
+  - [Commit changes](#commit-changes-1)
+- [Extras](#extras)
+- [Wrapping up](#wrapping-up)
+
+## Some background
+
 Modern developments are usually done on Linux or Mac but most IBM I developer usually have a Windows OS and from that they connect to the Power([AS/400](https://en.wikipedia.org/wiki/IBM_AS/400), iSeries) using [ACS](https://www.ibm.com/support/pages/ibm-i-access-client-solutions) (Access Client Solutions) with a [5250 Terminal emulator](https://en.wikipedia.org/wiki/IBM_5250) over telnet.  
 
 Once inside the Power, the IBM I developer needs to do what he was created to do: Write some cool code that will run for the ages. For that we have [SEU](https://www.nicklitten.com/course/what-is-seu-source-entry-utility/) (Source entry utility or stone age entry utility ), [RDI](https://www.nicklitten.com/module/rational-developer-rdi/) (Rational Developer for I) or (the modern one) [VsCode](https://code.visualstudio.com/). 
