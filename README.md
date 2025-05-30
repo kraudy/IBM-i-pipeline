@@ -4,11 +4,12 @@ Some knowledge about [ILE](http://en.wikipedia.org/wiki/Integrated_Language_Envi
 
 Here is an [Introduction to the IBM I Operating System](https://github.com/kraudy/ibmi_os) if you are completely new or want to do some refreshing.
 
-## Table of Contents
+# Table of Contents
 
 - [Some background](#some-background)
-- [Create repo](#create-repo)
-- [Create repo dir struct](#create-repo-dir-struct)
+- [Repos]
+  - [Create repo](#create-repo)
+  - [Create repo dir struct](#create-repo-dir-struct)
 - [Create empty project](#create-empty-project)
   - [Commit changes](#commit-changes)
 - [Create simple project](#create-simple-project)
@@ -21,7 +22,7 @@ Here is an [Introduction to the IBM I Operating System](https://github.com/kraud
 - [Extras](#extras)
 - [Wrapping up](#wrapping-up)
 
-## Some background
+# Some background
 
 Modern developments are usually done on Linux or Mac but most IBM I developer usually have a Windows OS and from that they connect to the Power([AS/400](https://en.wikipedia.org/wiki/IBM_AS/400), iSeries) using [ACS](https://www.ibm.com/support/pages/ibm-i-access-client-solutions) (Access Client Solutions) with a [5250 Terminal emulator](https://en.wikipedia.org/wiki/IBM_5250) over telnet.  
 
@@ -43,6 +44,7 @@ Here is a list:
   - [Remote WSL](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl)
 - [PUB400 User](https://pub400.com/cgi/signup.nd/start)
 
+# Repos
 
 ## Create repo
 
@@ -77,7 +79,7 @@ mkdir ./empty && mkdir ./simple && mkdir ./lil_complex
 
 Add these folders to your workspace on VsCode (File -> Add Folder to Workspace)
 
-## Create empty project
+# Create empty project
 
 So, this is the simplest ibm i project that you can make, no source code for now.
 
@@ -112,13 +114,13 @@ git commit -m "My cool ibm i project" # Commit the staged changes with a descrip
 git push   # Send it to your github repo
 ```
 
-## Create simple project
+# Create simple project
 
 We already created the simplest project, an empty one, now we'll create a simple one.
 
 Use the ibm i project explorer to initialize the `./simple` project like we did with the empty one.
 
-Lets create a dir that represents a source phisical file ((IBM I Intro)[https://github.com/kraudy/ibmi_os]) and cd into it.
+Lets create a dir that represents a source phisical file ((IBM I object system)[https://github.com/kraudy/ibmi_os/tree/master?tab=readme-ov-file#object-system-not-file-system]) and cd into it.
 
 ```bash
 cd ./simple
@@ -127,13 +129,13 @@ mkdir ./qrpglesrc && cd ./qrpglesrc
 
 ### Create first source
 
-Add our [RPG](https://en.wikipedia.org/wiki/IBM_RPG) (RPG intro repo here soon) hello world source. Note the naming convention, our pipeline will use that name to know how to compile the soure `rpgle -> languaje` `pgm -> ibm i object`.
+Add our [RPG](https://en.wikipedia.org/wiki/IBM_RPG) hello world source. Note the naming convention, our pipeline will use that name to know how to compile the soure `rpgle -> languaje` `pgm -> ibm i object`.
 
 ```bash
 touch hello.pgm.rpgle
 ```
 
-Now, the code; don't worry if it looks kind of cryptic for you. I gotcha (RPG intro repo here soon)
+Now, the code; don't worry if it looks kind of cryptic for you. I gotcha ([RPG intro repo](https://github.com/kraudy/rpg_language))
 
 ```rpg
 **free
@@ -149,7 +151,7 @@ That is our first source file. Check: Good.
 
 Now, how to compile it?.
 
-First, connect to PUB400 with the code for ibm i plugin. Here you have the [Code for IBM i Docs](https://codefori.github.io/docs/quickstart/). These are actually pretty nice, shout out to Liam, Sébastien and the Code4i people.
+First, connect to PUB400 with the Code4i plugin. Here you have the [Code for IBM i Docs](https://codefori.github.io/docs/quickstart/). These are actually pretty nice, shout out to Liam, Sébastien and the Code4i people.
 
 On the ibm i project explorer go to the simple project and set the [deploy location](https://ibm.github.io/vscode-ibmi-projectexplorer/#/pages/projectExplorer/source-and-deployment). Should look something like this
 
@@ -159,7 +161,7 @@ On the ibm i project explorer go to the simple project and set the [deploy locat
 
 Select the deploy method, `compare` should be fine.
 
-Also, this automatically generates a `.env` file for your project that looks similar to this, which is basically a library list for the job on the ibm i. Again don't worry about these definitions if you don't know them ((IBM I Intro)[https://github.com/kraudy/ibmi_os]).
+Also, this automatically generates a `.env` file for your project that looks similar to this, which is basically a library list for the job on the ibm i. Again don't worry about these definitions if you don't know them ((IBM I library list)[https://github.com/kraudy/ibmi_os/tree/master?tab=readme-ov-file#object-system-not-file-system]).
 
 ```bash
 LIBL=QGPL QTEMP GAMES400
@@ -246,7 +248,7 @@ DSPLY  Hello world
 
 Commit your changes and push them to the github repo.
 
-## Create lil_complex project
+# Create lil_complex project
 
 Now we create a little more complex project structure.
 
@@ -338,10 +340,10 @@ git branch -d lil_complex # Delete it, we don't need it anymore. The branch life
 
 That's it!
 
-## Extras
+# Extras
 
 If you want to go deeper into ibm pipeline and devops i suggest this excelent repo that Ravisankar made: [DevOps on IBM I](https://github.com/ravisankar-PIO/devopsonibmi) where he goes deeper on more advanced topics.
 
-## Wrapping up
+# Wrapping up
 
 If you have any suggestions make an issue and i'll check it out. Thanks.
