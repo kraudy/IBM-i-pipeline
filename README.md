@@ -7,7 +7,7 @@ Here is an [Introduction to the IBM I Operating System](https://github.com/kraud
 # Table of Contents
 
 - [Some background](#some-background)
-- [Repos]
+- [Repos](#repos)
   - [Create repo](#create-repo)
   - [Create repo dir struct](#create-repo-dir-struct)
 - [Create empty project](#create-empty-project)
